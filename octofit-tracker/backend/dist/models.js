@@ -18,6 +18,12 @@ const activitySchema = new Schema({
     points: { type: Number, default: 0 },
     completedAt: { type: Date, default: Date.now },
 }, { timestamps: true });
+const leaderboardSchema = new Schema({
+    userId: { type: Schema.Types.ObjectId, ref: 'User' },
+    name: { type: String, required: true },
+    totalPoints: { type: Number, default: 0 },
+    rank: { type: Number, default: 0 },
+}, { timestamps: true });
 const workoutSchema = new Schema({
     name: { type: String, required: true },
     category: { type: String, required: true },
@@ -27,4 +33,5 @@ const workoutSchema = new Schema({
 export const User = mongoose.models.User || model('User', userSchema);
 export const Team = mongoose.models.Team || model('Team', teamSchema);
 export const Activity = mongoose.models.Activity || model('Activity', activitySchema);
+export const LeaderboardEntry = mongoose.models.LeaderboardEntry || model('LeaderboardEntry', leaderboardSchema);
 export const Workout = mongoose.models.Workout || model('Workout', workoutSchema);
